@@ -7,3 +7,6 @@ Po wejściu na stronę (index.html) skrypt automatycznie się włącza, np. aler
 Skrypt po zatwierdzeniu przez użytkownika alertu powinien wyświetlić wszystkie wystąpienia danych elementów.
 Wyświetlanie wyniku jest dowolne (np. console.log, kolejny alert).
 */
+let searchValue = window.prompt("Podaj nazwe tagu lub klase:");
+let items = document.querySelectorAll(searchValue);
+window.alert(Array.from(items).map((item, iter) => ` ${iter}. ${item.innerHTML}`).join(" "));
