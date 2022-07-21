@@ -9,4 +9,19 @@ Wyświetlanie wyniku jest dowolne (np. console.log, kolejny alert).
 */
 let searchValue = window.prompt("Podaj nazwe tagu lub klase:");
 let items = document.querySelectorAll(searchValue);
-window.alert(Array.from(items).map((item, iter) => ` ${iter}. ${item.innerHTML}`).join(" "));
+let itemsCopy = [];
+for(let i = 0; i < items.length; i++){
+    itemsCopy.push(items[i].cloneNode(true)); // Wstawianie kopii elementów aby nie modyfikować głównej strony
+}
+itemsCopy.forEach(item => {
+    if(!item.querySelector(searchValue)){
+        console.log(item.innerHTML);
+        return;
+    }
+    while(item.querySelector(searchValue)){
+        item.removeChild(item.querySelector(searchValue));
+    }
+    console.log(item.innerHTML);
+});
+//Stary kod:
+//window.alert(Array.from(items).map((item, iter) => ` ${iter}. ${item.innerText}`).join("\n"));
